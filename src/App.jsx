@@ -368,7 +368,7 @@ export default function ResearchPortfolio() {
       </section>
 
       {/* Publications Section */}
-      <section className="py-20 px-4 bg-gray-900">
+      <section className="pt-20 pb-32 px-4 bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">Publications</h2>
@@ -382,8 +382,15 @@ export default function ResearchPortfolio() {
         </div>
       </section>
 
+      {/* Subtle centered divider */}
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-center">
+          <div className="w-36 h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-40 my-8 rounded" />
+        </div>
+      </div>
+
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4">
+      <footer className="bg-gray-800 text-white py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex justify-center gap-6 mb-6">
             <a href="https://github.com/MadhurendraMishra" target="_blank" rel="noopener noreferrer"

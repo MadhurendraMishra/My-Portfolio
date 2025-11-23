@@ -1,413 +1,407 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Github, Linkedin, Globe, Calendar, MapPin, Award, BookOpen, Code, User, Briefcase, Trophy, Users, ChevronDown, Star, Atom, Zap, Brain, Telescope } from 'lucide-react';
+import { X, Github, Linkedin, BookOpen, Atom, Brain, Globe, Lightbulb, ChevronDown } from 'lucide-react';
 
-const App = () => {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [isScrolled, setIsScrolled] = useState(false);
+export default function ResearchPortfolio() {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+  const research = [
+    {
+      id: 1,
+      icon: <Globe className="w-12 h-12" />,
+      title: "Orbital Dynamics Research",
+      subtitle: "with Dr. Aswin Sekhar",
+      affiliation: "Paris Observatory",
+      description: "Collaborating on orbital dynamics research, developing Python scripts and using MERCURY (FORTRAN) to analyze orbital parameters, MOID, Lidov–Kozai effects, and resonant interactions in celestial mechanics.",
+      skills: ["Python", "FORTRAN", "Orbital Mechanics", "Numerical Simulation"],
+      details: "This research involves sophisticated computational analysis of how celestial bodies interact gravitationally over time. I'm focusing on understanding minimum orbital intersection distances (MOID) and how secular perturbations like the Lidov-Kozai mechanism affect long-term orbital stability."
+    },
+    {
+      id: 2,
+      icon: <Atom className="w-12 h-12" />,
+      title: "Phononic Frequency Combs in MEMS/NEMS",
+      subtitle: "under Dr. Adarsh Ganesan",
+      affiliation: "BITS Pilani, Dubai",
+      description: "Conducting research on nonlinear dynamics and phononic combs in micro and nanoelectromechanical systems. Performing simulations, literature synthesis, and model development for frequency comb-driven devices.",
+      skills: ["Python", "Nonlinear Dynamics", "MEMS/NEMS", "Data Analysis"],
+      details: "Frequency combs in mechanical systems represent a cutting-edge research area with applications in sensing, signal processing, and fundamental physics. My work focuses on understanding how nonlinear coupling can generate stable frequency combs in nanoscale mechanical resonators."
+    },
+    {
+      id: 3,
+      icon: <Brain className="w-12 h-12" />,
+      title: "Transcranial Acoustic Stimulation",
+      subtitle: "with Dr. Zhen Qi",
+      affiliation: "Worcester Polytechnic Institute",
+      description: "Interdisciplinary project studying ultrasonic frequency combs for non-invasive brain stimulation using the Hodgkin–Huxley framework to model neuronal response to acoustic pressure waves.",
+      skills: ["Python", "Computational Neuroscience", "Acoustics", "Numerical Modelling"],
+      details: "This project bridges physics, neuroscience, and biomedical engineering. We're investigating how carefully designed ultrasonic frequency combs can lower neuronal activation thresholds, potentially opening new pathways for treating neurological conditions non-invasively."
+    },
+    {
+      id: 4,
+      icon: <Lightbulb className="w-12 h-12" />,
+      title: "Optical & Semiconductor Research",
+      subtitle: "under Dr. Kuldeep Kumar",
+      affiliation: "University of Delhi",
+      description: "Completed two projects: computation of optical properties of gold nanoprisms using DDSCAT, and analysis of ideality factors in optoelectronic devices including LEDs and solar cells.",
+      skills: ["DDSCAT", "Nanophotonics", "Semiconductor Devices", "Experimental Analysis"],
+      details: "These projects explored light-matter interactions at the nanoscale and the practical performance of semiconductor devices. The nanoprism work revealed how geometry dramatically affects plasmonic resonances, while the ideality factor study provided insights into device efficiency and recombination mechanisms."
+    },
+    {
+      id: 5,
+      icon: <BookOpen className="w-12 h-12" />,
+      title: "Philosophy & Cultural Research",
+      subtitle: "under Dr. Balaganapathi Devarakonda",
+      affiliation: "University of Delhi",
+      description: "ICCR-sponsored research internship fostering Indo–Jamaican cultural relations, contributing to international collaboration reports and cross-cultural philosophical studies.",
+      skills: ["Research Writing", "ICCR", "Cross-Cultural Studies", "Policy Research"],
+      details: "This unique interdisciplinary experience broadened my perspective beyond physics. I contributed to documenting cultural exchanges and preparing policy recommendations that strengthen educational and research ties between India and Jamaica."
+    }
+  ];
+
+  const projects = [
+    {
+      id: 6,
+      icon: <Brain className="w-12 h-12" />,
+      title: "Transcranial Acoustic Stimulation",
+      type: "Computational Neuroscience",
+      description: "Exploring methods to lower neuronal activation threshold using ultrasonic frequency combs for non-invasive brain stimulation, employing the Hodgkin–Huxley model to simulate neuronal membrane dynamics.",
+      skills: ["Python", "Numerical Computing", "Multithreading", "GUI Framework"],
+      github: null
+    },
+    {
+      id: 7,
+      icon: <Atom className="w-12 h-12" />,
+      title: "Quantum Encryption System",
+      type: "Quantum Computing",
+      description: "Developed encryption and decryption system using Qiskit and Python. Integrated quantum circuits, converted classical bits to qubits and vice versa, testing for correctness and efficiency.",
+      skills: ["Python", "Qiskit", "Quantum Computing", "Cryptography"],
+      github: "https://github.com/MadhurendraMishra/QuantumComputingQubitxQubit"
+    },
+    {
+      id: 8,
+      icon: <Lightbulb className="w-12 h-12" />,
+      title: "Gold Nano-Prism Optical Properties",
+      type: "Computational Physics",
+      description: "Detailed computational study on how gold nanoparticle size and shape influence optical properties like extinction, scattering, and absorption efficiencies using DDSCAT for light–matter interactions.",
+      skills: ["DDSCAT", "Computational Physics", "Data Analysis", "Visualization"],
+      github: "https://github.com/MadhurendraMishra/SolidStatePhysics/blob/main/Madhurendra_Solid_State_Project.pdf"
+    },
+    {
+      id: 9,
+      icon: <Atom className="w-12 h-12" />,
+      title: "Ideality Factor Analysis",
+      type: "Experimental Physics",
+      description: "Analyzed ideality factor of RGB LEDs, Solar Cells, and P–N Junction Diodes, comparing experimental results with theoretical expectations to study deviations and optimize performance.",
+      skills: ["Experimental Physics", "Data Analysis", "Semiconductor Theory", "Python"],
+      github: null
+    }
+  ];
+
+  const publications = [
+    {
+      id: 10,
+      icon: <BookOpen className="w-12 h-12" />,
+      title: "Cosmological Frequency Combs",
+      authors: "Trivedi, O., Mishra, M., & Ganesan, A.",
+      year: "2025",
+      venue: "arXiv:2507.01929",
+      description: "Explored the concept of frequency combs arising from cosmological phenomena, bridging quantum mechanics, general relativity, and observational cosmology.",
+      link: "https://arxiv.org/abs/2507.01929"
+    },
+    {
+      id: 11,
+      icon: <BookOpen className="w-12 h-12" />,
+      title: "Heart Full of Pain",
+      authors: "Mishra, M.",
+      year: "2022",
+      venue: "Serene Verses of Emotions, True Dreamster, pp. 87–90",
+      description: "A poetic exploration of emotional depth and self-reflection, published in an anthology celebrating human experiences.",
+      link: "https://amzn.in/d/eUNT67e"
+    }
+  ];
+
+  const Modal = ({ item, onClose }) => {
+    if (!item) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={onClose}>
+        <div className="bg-gray-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl text-gray-100" onClick={e => e.stopPropagation()}>
+          <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-t-2xl">
+            <div className="flex justify-between items-start">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  {item.icon}
+                  <h2 className="text-2xl font-bold">{item.title}</h2>
+                </div>
+                {item.subtitle && (
+                  <p className="text-indigo-100 text-sm">{item.subtitle}</p>
+                )}
+                {item.affiliation && (
+                  <p className="text-indigo-200 text-xs mt-1">{item.affiliation}</p>
+                )}
+                {item.type && (
+                  <span className="inline-block bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs mt-2">{item.type}</span>
+                )}
+              </div>
+              <button onClick={onClose} className="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2 transition">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+          
+          <div className="p-6">
+            <p className="text-gray-700 leading-relaxed mb-4">{item.description}</p>
+            
+            {item.details && (
+              <div className="bg-indigo-900/20 p-4 rounded-lg mb-4">
+                <h3 className="font-semibold text-indigo-200 mb-2">Research Details</h3>
+                <p className="text-gray-300 text-sm leading-relaxed">{item.details}</p>
+              </div>
+            )}
+
+            {item.authors && (
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-100 mb-2">Authors</h3>
+                <p className="text-gray-300 text-sm">{item.authors} ({item.year})</p>
+                <p className="text-gray-400 text-sm italic">{item.venue}</p>
+              </div>
+            )}
+            
+            {item.skills && (
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-100 mb-2">Skills & Technologies</h3>
+                <div className="flex flex-wrap gap-2">
+                  {item.skills.map((skill, idx) => (
+                    <span key={idx} className="bg-indigo-800 text-indigo-100 px-3 py-1 rounded-full text-sm">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {(item.github || item.link) && (
+              <div className="flex gap-3 pt-4 border-t">
+                {item.github && (
+                  <a href={item.github} target="_blank" rel="noopener noreferrer" 
+                     className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                    <Github className="w-4 h-4" />
+                    <span>View on GitHub</span>
+                  </a>
+                )}
+                {item.link && (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer"
+                     className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    <BookOpen className="w-4 h-4" />
+                    <span>Read Publication</span>
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
   };
 
-  const FloatingParticles = () => (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
-      {[...Array(20)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20 animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${3 + Math.random() * 2}s`
-          }}
-        />
-      ))}
+  const Card = ({ item, delay }) => (
+    <div 
+      className="bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer overflow-hidden text-gray-100"
+      onClick={() => setSelectedItem(item)}
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-6 text-white">
+        {item.icon}
+        <h3 className="text-xl font-bold mt-3">{item.title}</h3>
+        {item.subtitle && <p className="text-indigo-100 text-sm mt-1">{item.subtitle}</p>}
+        {item.type && <p className="text-indigo-100 text-sm mt-1">{item.type}</p>}
+      </div>
+      <div className="p-6">
+        <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">{item.description}</p>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {item.skills?.slice(0, 3).map((skill, idx) => (
+            <span key={idx} className="bg-gray-700 text-gray-200 px-2 py-1 rounded-full text-xs">
+              {skill}
+            </span>
+          ))}
+          {item.skills?.length > 3 && (
+            <span className="bg-gray-700 text-gray-200 px-2 py-1 rounded-full text-xs">
+              +{item.skills.length - 3} more
+            </span>
+          )}
+        </div>
+      </div>
     </div>
-  );
-
-  const Navigation = () => (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-2">
-            <Atom className="h-8 w-8 text-blue-400" />
-            <span className="text-xl font-bold text-white">Madhurendra Mishra</span>
-          </div>
-          <div className="hidden md:flex space-x-8">
-            {['About', 'Research', 'Projects', 'Publications', 'Contact'].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
-                className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-medium"
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
-
-  const Hero = () => (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
-      <FloatingParticles />
-      <div className="text-center z-10 max-w-4xl mx-auto px-4">
-        <div className="mb-8">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-            Madhurendra Mishra
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-6">
-            Theoretical Physicist & Research Scientist
-          </p>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Exploring the fundamental nature of the universe through relativistic cosmology, quantum gravity, and astrophysics. 
-            Bridging complex concepts with innovative interdisciplinary approaches.
-          </p>
-        </div>
-        
-        <div className="flex justify-center space-x-6 mb-12">
-          <a href="mailto:madhurendramishra24@gmail.com" className="p-3 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors">
-            <Mail className="h-6 w-6 text-white" />
-          </a>
-          <a href="#" className="p-3 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors">
-            <Linkedin className="h-6 w-6 text-white" />
-          </a>
-          <a href="#" className="p-3 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors">
-            <Github className="h-6 w-6 text-white" />
-          </a>
-          <a href="#" className="p-3 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors">
-            <Globe className="h-6 w-6 text-white" />
-          </a>
-        </div>
-        
-        <button 
-          onClick={() => scrollToSection('about')}
-          className="animate-bounce"
-        >
-          <ChevronDown className="h-8 w-8 text-white" />
-        </button>
-      </div>
-    </section>
-  );
-
-  const About = () => (
-    <section id="about" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Academic Journey</h3>
-            <div className="space-y-6">
-              <div className="border-l-4 border-blue-600 pl-6">
-                <h4 className="text-lg font-semibold text-gray-900">Bachelor of Science (Hons) in Physics</h4>
-                <p className="text-gray-600">Sri Guru Tegh Bahadur Khalsa College, University of Delhi</p>
-                <p className="text-sm text-gray-500">Nov 2022 - Present</p>
-              </div>
-              <div className="border-l-4 border-purple-600 pl-6">
-                <h4 className="text-lg font-semibold text-gray-900">Bachelor of Science in Data Science</h4>
-                <p className="text-gray-600">Indian Institute of Technology, Madras</p>
-                <p className="text-sm text-gray-500">Nov 2023 - Present</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <Brain className="h-12 w-12 text-blue-600 mb-4" />
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Research Focus</h4>
-              <p className="text-gray-600 text-sm">Quantum Gravity, Relativistic Cosmology, Astrophysics</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <Telescope className="h-12 w-12 text-purple-600 mb-4" />
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Collaboration</h4>
-              <p className="text-gray-600 text-sm">Working with leading astronomers and researchers globally</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <Code className="h-12 w-12 text-green-600 mb-4" />
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Technical Skills</h4>
-              <p className="text-gray-600 text-sm">Python, FORTRAN, LaTeX, Quantum Computing</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <Zap className="h-12 w-12 text-yellow-600 mb-4" />
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Innovation</h4>
-              <p className="text-gray-600 text-sm">Bridging Indian philosophy with modern physics</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-
-  const Research = () => (
-    <section id="research" className="py-20 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Research Experience</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="space-y-8">
-          <div className="bg-gray-800 rounded-lg p-8 hover:bg-gray-700 transition-colors">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-2">Collaboration with Dr. Aswin Sekhar</h3>
-                <p className="text-blue-400">Paris Observatory • Remote</p>
-              </div>
-              <span className="text-gray-400 text-sm">Dec 2022 - Present</span>
-            </div>
-            <p className="text-gray-300 mb-4">
-              Developing Python codes for orbital mechanics analysis, utilizing Mercury integrator's FORTRAN files 
-              to study MOID, small body dynamics, and the Lidov–Kozai mechanism in Sun-grazing comets.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm">Orbital Mechanics</span>
-              <span className="px-3 py-1 bg-purple-600 text-white rounded-full text-sm">Python</span>
-              <span className="px-3 py-1 bg-green-600 text-white rounded-full text-sm">FORTRAN</span>
-            </div>
-          </div>
-          
-          <div className="bg-gray-800 rounded-lg p-8 hover:bg-gray-700 transition-colors">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-2">Collaboration with Dr. Adarsh Ganesan</h3>
-                <p className="text-blue-400">BITS Pilani, Dubai • Remote</p>
-              </div>
-              <span className="text-gray-400 text-sm">Aug 2024 - Present</span>
-            </div>
-            <p className="text-gray-300 mb-4">
-              Researching phononic combs in MEMS and NEMS systems. Contributed to two research papers 
-              accepted for RSES-2025 conference at BITS Pilani, Rajasthan.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm">MEMS/NEMS</span>
-              <span className="px-3 py-1 bg-purple-600 text-white rounded-full text-sm">Research Papers</span>
-              <span className="px-3 py-1 bg-green-600 text-white rounded-full text-sm">Conference</span>
-            </div>
-          </div>
-          
-          <div className="bg-gray-800 rounded-lg p-8 hover:bg-gray-700 transition-colors">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-2">Collaboration with Dr. Balaganapathi Devarakonda</h3>
-                <p className="text-blue-400">University of Delhi • ICCR Project</p>
-              </div>
-              <span className="text-gray-400 text-sm">Sep 2021 - Dec 2021</span>
-            </div>
-            <p className="text-gray-300 mb-4">
-              Worked on a project sponsored by ICCR, Ministry of External Affairs, focusing on 
-              Indo-Jamaican cultural relations and preparing reports for international collaboration.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm">Cultural Relations</span>
-              <span className="px-3 py-1 bg-purple-600 text-white rounded-full text-sm">Government Project</span>
-              <span className="px-3 py-1 bg-green-600 text-white rounded-full text-sm">International</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-
-  const Projects = () => (
-    <section id="projects" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Projects & Research</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
-            <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-              <Atom className="h-6 w-6 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Quantum Encryption System</h3>
-            <p className="text-gray-600 mb-4">
-              Developed quantum encryption using Qiskit and Python, integrating quantum circuits for secure communication.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 bg-blue-100 text-blue-600 rounded text-sm">Qiskit</span>
-              <span className="px-2 py-1 bg-purple-100 text-purple-600 rounded text-sm">Python</span>
-              <span className="px-2 py-1 bg-green-100 text-green-600 rounded text-sm">Quantum</span>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
-            <div className="h-12 w-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-              <Star className="h-6 w-6 text-yellow-600" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Gold Nano-Prism Optics</h3>
-            <p className="text-gray-600 mb-4">
-              Analyzed optical properties of gold nanoparticles using DDSCAT simulation to study size and shape effects.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-600 rounded text-sm">DDSCAT</span>
-              <span className="px-2 py-1 bg-purple-100 text-purple-600 rounded text-sm">Simulation</span>
-              <span className="px-2 py-1 bg-blue-100 text-blue-600 rounded text-sm">Optics</span>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6">
-            <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-              <Zap className="h-6 w-6 text-green-600" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Optoelectronic Device Analysis</h3>
-            <p className="text-gray-600 mb-4">
-              Analyzed ideality factors of RGB LEDs and solar cells, comparing experimental results with theoretical predictions.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 bg-green-100 text-green-600 rounded text-sm">LEDs</span>
-              <span className="px-2 py-1 bg-blue-100 text-blue-600 rounded text-sm">Solar Cells</span>
-              <span className="px-2 py-1 bg-purple-100 text-purple-600 rounded text-sm">Analysis</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-
-  const Publications = () => (
-    <section id="publications" className="py-20 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Publications & Awards</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-2xl font-semibold text-white mb-8">Publications</h3>
-            <div className="space-y-6">
-              <div className="bg-gray-800 rounded-lg p-6">
-                <h4 className="text-lg font-semibold text-white mb-2">Heart Full of Pain, Serene Verses of Emotions</h4>
-                <p className="text-gray-300 mb-2">True Dreamster • August 2022</p>
-                <p className="text-gray-400 text-sm">Book publication exploring emotional themes through verse</p>
-              </div>
-              
-              <div className="bg-gray-800 rounded-lg p-6">
-                <h4 className="text-lg font-semibold text-white mb-2">Conference Presentations</h4>
-                <div className="space-y-2 text-gray-300">
-                  <p>• RSES-2025 - BITS Pilani (2 research posters)</p>
-                  <p>• ASAC'24 - Ashoka University</p>
-                  <p>• CBSE Regional Science Exhibition</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h3 className="text-2xl font-semibold text-white mb-8">Awards & Recognition</h3>
-            <div className="space-y-4">
-              {[
-                "1st Prize - Lok Kalyan Buddha Foundation Quiz (45,000 participants)",
-                "1st Position - Inter-Zonal Sanskrit Shloka Recitation",
-                "2nd Position - National Computer Olympiad",
-                "Silver Medal - National Hindi Olympiad",
-                "Bronze Medal (x2) - National Astronomy Olympiad"
-              ].map((award, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <Trophy className="h-5 w-5 text-yellow-500 flex-shrink-0" />
-                  <span className="text-gray-300">{award}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-
-  const Contact = () => (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Interested in collaboration or have questions about my research? I'd love to hear from you.
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <div className="flex items-center space-x-4">
-              <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Mail className="h-6 w-6 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">Email</h3>
-                <p className="text-gray-600">madhurendramishra24@gmail.com</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Users className="h-6 w-6 text-purple-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">Current Role</h3>
-                <p className="text-gray-600">Research Intern & Physics Student</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <MapPin className="h-6 w-6 text-green-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">Location</h3>
-                <p className="text-gray-600">Delhi, India</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Research Interests</h3>
-            <div className="space-y-4">
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <h4 className="font-semibold text-blue-900 mb-2">Theoretical Physics</h4>
-                <p className="text-blue-700 text-sm">Quantum Gravity, Relativistic Cosmology, Astrophysics</p>
-              </div>
-              <div className="p-4 bg-purple-50 rounded-lg">
-                <h4 className="font-semibold text-purple-900 mb-2">Computational Physics</h4>
-                <p className="text-purple-700 text-sm">Quantum Computing, Numerical Analysis, Data Science</p>
-              </div>
-              <div className="p-4 bg-green-50 rounded-lg">
-                <h4 className="font-semibold text-green-900 mb-2">Interdisciplinary Research</h4>
-                <p className="text-green-700 text-sm">Philosophy of Science, Science Communication</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Navigation />
-      <Hero />
-      <About />
-      <Research />
-      <Projects />
-      <Publications />
-      <Contact />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-100">
+      {/* Header */}
+      <header className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-gray-800 shadow-md' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className={`text-2xl font-bold ${scrolled ? 'text-indigo-300' : 'text-white'}`}>
+            Madhurendra Mishra
+          </h1>
+          <div className="flex gap-4">
+            <a href="https://github.com/MadhurendraMishra" target="_blank" rel="noopener noreferrer"
+               className={`hover:scale-110 transition ${scrolled ? 'text-gray-300' : 'text-white'}`}>
+              <Github className="w-6 h-6" />
+            </a>
+            <a href="https://www.linkedin.com/in/madhurendramishra24/" target="_blank" rel="noopener noreferrer"
+               className={`hover:scale-110 transition ${scrolled ? 'text-gray-300' : 'text-white'}`}>
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white">
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+            Hello, I'm Madhurendra
+          </h1>
+          <p className="text-xl md:text-2xl mb-4 text-indigo-100">
+            Physics Student & Aspiring Cosmology Researcher
+          </p>
+          <p className="text-lg md:text-xl mb-8 text-indigo-200">
+            SGTB Khalsa College, University of Delhi | IIT Madras Diploma in Data Science
+          </p>
+          <p className="text-base md:text-lg mb-12 max-w-2xl mx-auto text-indigo-100">
+            Passionate about cosmology, quantum mechanics, and computational physics. 
+            Pursuing research in orbital dynamics, frequency combs, and transcranial stimulation.
+          </p>
+          <a href="#research" className="inline-block bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold hover:bg-indigo-100 transition transform hover:scale-105 shadow-lg">
+            Explore My Research
+          </a>
+        </div>
+        <ChevronDown className="absolute bottom-8 w-8 h-8 animate-bounce" />
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-100 mb-12 text-center">About Me</h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1">
+              <div className="space-y-4 text-gray-300 leading-relaxed">
+                <p>
+                  I'm a 22-year-old physics undergraduate passionate about understanding the universe 
+                  at its most fundamental level. Currently pursuing my Bachelor's in Physics at 
+                  SGTB Khalsa College and a Diploma in Data Science from IIT Madras.
+                </p>
+                <p>
+                  My research interests span cosmology, quantum mechanics, and computational physics. 
+                  I'm particularly fascinated by how frequency combs appear across scales—from 
+                  MEMS devices to cosmological phenomena—and how computational methods can 
+                  unlock new insights in these domains.
+                </p>
+                <p>
+                  My ultimate goal is to pursue a Ph.D. in cosmology and contribute to our 
+                  understanding of the universe's evolution, dark matter, and the fundamental 
+                  nature of spacetime.
+                </p>
+              </div>
+              <div className="mt-6 bg-gray-800 rounded-2xl shadow-lg p-6">
+                <h3 className="text-xl font-bold text-gray-100 mb-4">Quick Facts</h3>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <li><strong>Age:</strong> 22 Years</li>
+                  <li><strong>Location:</strong> Delhi, India</li>
+                  <li><strong>Education:</strong> B.Sc. Physics (Expected 2025)</li>
+                  <li><strong>Research Areas:</strong> Cosmology, Quantum Computing, Orbital Dynamics</li>
+                  <li><strong>Career Goal:</strong> Ph.D. in Cosmology</li>
+                </ul>
+              </div>
+            </div>
+            <div className="order-1 md:order-2">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/Gemini_Generated_Image_kvf1pakvf1pakvf1.png"
+                  alt="Madhurendra Mishra"
+                  className="w-full h-auto object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = '<div class="bg-gradient-to-br from-indigo-500 to-purple-600 w-full h-96 flex items-center justify-center text-white text-6xl font-bold">MM</div>';
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Section */}
+      <section id="research" className="py-20 px-4 bg-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">Research Experience</h2>
+            <p className="text-xl text-gray-300">Collaborative projects across multiple institutions</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {research.map((item, idx) => (
+              <Card key={item.id} item={item} delay={idx * 100} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">Projects</h2>
+            <p className="text-xl text-gray-300">Independent research and computational work</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {projects.map((item, idx) => (
+              <Card key={item.id} item={item} delay={idx * 100} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Publications Section */}
+      <section className="py-20 px-4 bg-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">Publications</h2>
+            <p className="text-xl text-gray-300">Contributing to scientific literature</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {publications.map((item, idx) => (
+              <Card key={item.id} item={item} delay={idx * 100} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="flex justify-center gap-6 mb-6">
+            <a href="https://github.com/MadhurendraMishra" target="_blank" rel="noopener noreferrer"
+               className="hover:text-indigo-400 transition">
+              <Github className="w-8 h-8" />
+            </a>
+            <a href="https://www.linkedin.com/in/madhurendramishra24/" target="_blank" rel="noopener noreferrer"
+               className="hover:text-indigo-400 transition">
+              <Linkedin className="w-8 h-8" />
+            </a>
+          </div>
+          <p className="text-gray-400">&copy; 2025 Madhurendra Mishra. All rights reserved.</p>
+          <p className="text-gray-500 text-sm mt-2">Aspiring Cosmologist | Physics Researcher | Future Ph.D. Candidate</p>
+        </div>
+      </footer>
+
+      {/* Modal */}
+      {selectedItem && <Modal item={selectedItem} onClose={() => setSelectedItem(null)} />}
     </div>
   );
-};
-
-export default App;
+}

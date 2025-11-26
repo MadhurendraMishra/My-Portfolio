@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Github, Linkedin, BookOpen, Atom, Brain, Globe, Lightbulb, ChevronDown } from 'lucide-react';
+import { X, Github, Linkedin, BookOpen, Atom, Brain, Globe, Lightbulb, ChevronDown, FileText } from 'lucide-react';
 
 export default function ResearchPortfolio() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -250,12 +250,17 @@ export default function ResearchPortfolio() {
           </h1>
           <div className="flex gap-4">
             <a href="https://github.com/MadhurendraMishra" target="_blank" rel="noopener noreferrer"
-               className={`hover:scale-110 transition ${scrolled ? 'text-gray-300' : 'text-white'}`}>
+               className={`hover:scale-110 mt-3 transition ${scrolled ? 'text-gray-300' : 'text-white'}`}>
               <Github className="w-6 h-6" />
             </a>
             <a href="https://www.linkedin.com/in/madhurendramishra24/" target="_blank" rel="noopener noreferrer"
-               className={`hover:scale-110 transition ${scrolled ? 'text-gray-300' : 'text-white'}`}>
+               className={`hover:scale-110 mt-3 transition ${scrolled ? 'text-gray-300' : 'text-white'}`}>
               <Linkedin className="w-6 h-6" />
+            </a>
+             <a href="https://drive.google.com/file/d/1YWaanbQD_ROpOXoESpHq9cu2hiOQDU59/view" target="_blank" rel="noopener noreferrer"
+               className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${scrolled ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-white text-indigo-600 hover:bg-indigo-50'}`}>
+              <FileText className="w-5 h-5" />
+              <span className="hidden sm:inline">CV</span>
             </a>
           </div>
         </div>

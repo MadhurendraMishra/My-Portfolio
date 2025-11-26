@@ -19,7 +19,7 @@ export default function ResearchPortfolio() {
       subtitle: "with Dr. Aswin Sekhar",
       affiliation: "Paris Observatory",
       description: "Collaborating on orbital dynamics research, developing Python scripts and using MERCURY (FORTRAN) to analyze orbital parameters, MOID, Lidov–Kozai effects, and resonant interactions in celestial mechanics.",
-      skills: ["Python", "FORTRAN", "Orbital Mechanics", "Numerical Simulation"],
+      skills: ["Python", "FORTRAN", "Orbital Mechanics", "Numerical Simulation", "Astronomical Simulation"],
       details: "This research involves sophisticated computational analysis of how celestial bodies interact gravitationally over time. I'm focusing on understanding minimum orbital intersection distances (MOID) and how secular perturbations like the Lidov-Kozai mechanism affect long-term orbital stability."
     },
     {
@@ -29,17 +29,17 @@ export default function ResearchPortfolio() {
       subtitle: "under Dr. Adarsh Ganesan",
       affiliation: "BITS Pilani, Dubai",
       description: "Conducting research on nonlinear dynamics and phononic combs in micro and nanoelectromechanical systems. Performing simulations, literature synthesis, and model development for frequency comb-driven devices.",
-      skills: ["Python", "Nonlinear Dynamics", "MEMS/NEMS", "Data Analysis"],
+      skills: ["Python", "Research Writing","Nonlinear Dynamics", "MEMS/NEMS", "Data Analysis", "Literature Review"],
       details: "Frequency combs in mechanical systems represent a cutting-edge research area with applications in sensing, signal processing, and fundamental physics. My work focuses on understanding how nonlinear coupling can generate stable frequency combs in nanoscale mechanical resonators."
     },
     {
       id: 3,
       icon: <Brain className="w-12 h-12" />,
       title: "Transcranial Acoustic Stimulation",
-      subtitle: "with Dr. Zhen Qi",
-      affiliation: "Worcester Polytechnic Institute",
+      subtitle: "with Dr. Zhen Qi and Dr Adarsh Ganesan",
+      affiliation: "Worcester Polytechnic Institute and BITS Pilani, Dubai",
       description: "Interdisciplinary project studying ultrasonic frequency combs for non-invasive brain stimulation using the Hodgkin–Huxley framework to model neuronal response to acoustic pressure waves.",
-      skills: ["Python", "Computational Neuroscience", "Acoustics", "Numerical Modelling"],
+      skills: ["Python", "Computational Neurophysics", "Acoustics", "Numerical Modelling"],
       details: "This project bridges physics, neuroscience, and biomedical engineering. We're investigating how carefully designed ultrasonic frequency combs can lower neuronal activation thresholds, potentially opening new pathways for treating neurological conditions non-invasively."
     },
     {
@@ -49,7 +49,7 @@ export default function ResearchPortfolio() {
       subtitle: "under Dr. Kuldeep Kumar",
       affiliation: "University of Delhi",
       description: "Completed two projects: computation of optical properties of gold nanoprisms using DDSCAT, and analysis of ideality factors in optoelectronic devices including LEDs and solar cells.",
-      skills: ["DDSCAT", "Nanophotonics", "Semiconductor Devices", "Experimental Analysis"],
+      skills: ["Python", "DDSCAT Software", "Nanophotonics", "Semiconductor Devices", "Experimental Analysis"],
       details: "These projects explored light-matter interactions at the nanoscale and the practical performance of semiconductor devices. The nanoprism work revealed how geometry dramatically affects plasmonic resonances, while the ideality factor study provided insights into device efficiency and recombination mechanisms."
     },
     {
@@ -71,7 +71,7 @@ export default function ResearchPortfolio() {
       title: "Transcranial Acoustic Stimulation",
       type: "Computational Neuroscience",
       description: "Exploring methods to lower neuronal activation threshold using ultrasonic frequency combs for non-invasive brain stimulation, employing the Hodgkin–Huxley model to simulate neuronal membrane dynamics.",
-      skills: ["Python", "Numerical Computing", "Multithreading", "GUI Framework"],
+      skills: ["Python", "Numerical Computing", "Neurophysics", "Data Analysis"],
       github: null
     },
     {
@@ -269,14 +269,13 @@ export default function ResearchPortfolio() {
             Hello, I'm Madhurendra
           </h1>
           <p className="text-xl md:text-2xl mb-4 text-indigo-100">
-            Physics Student & Aspiring Cosmology Researcher
+            Physics Student & Aspiring Researcher
           </p>
           <p className="text-lg md:text-xl mb-8 text-indigo-200">
-            SGTB Khalsa College, University of Delhi | IIT Madras Diploma in Data Science
+            SGTB Khalsa College, University of Delhi
           </p>
           <p className="text-base md:text-lg mb-12 max-w-2xl mx-auto text-indigo-100">
-            Passionate about cosmology, quantum mechanics, and computational physics. 
-            Pursuing research in orbital dynamics, frequency combs, and transcranial stimulation.
+            Passionate about cosmology, relativity, and computational physics. 
           </p>
           <a href="#research" className="inline-block bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold hover:bg-indigo-100 transition transform hover:scale-105 shadow-lg">
             Explore My Research
@@ -292,38 +291,40 @@ export default function ResearchPortfolio() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
               <div className="space-y-4 text-gray-300 leading-relaxed">
-                <p>
-                  I'm a 22-year-old physics undergraduate passionate about understanding the universe 
-                  at its most fundamental level. Currently pursuing my Bachelor's in Physics at 
-                  SGTB Khalsa College and a Diploma in Data Science from IIT Madras.
-                </p>
-                <p>
-                  My research interests span cosmology, quantum mechanics, and computational physics. 
-                  I'm particularly fascinated by how frequency combs appear across scales—from 
-                  MEMS devices to cosmological phenomena—and how computational methods can 
-                  unlock new insights in these domains.
-                </p>
-                <p>
-                  My ultimate goal is to pursue a Ph.D. in cosmology and contribute to our 
-                  understanding of the universe's evolution, dark matter, and the fundamental 
-                  nature of spacetime.
-                </p>
+<p>
+  I am a young physics researcher passionate about understanding the universe 
+  at its most fundamental level. I am currently pursuing my Bachelor's in Physics at 
+  SGTB Khalsa College, University of Delhi along with a Diploma in Data Science from IIT Madras.
+</p>
+
+<p>
+  My interests cover a wide range of physics, with a special focus on cosmology, relativity, 
+  astronomy, nonlinear systems, and computational physics. I enjoy working on questions 
+  where theory, simulation, and data come together to reveal something new. I am always 
+  eager to take on new projects, collaborate with others, and keep learning from people 
+  across the broader physics community.
+</p>
+
+<p>
+  My short and long term goal is to pursue a Ph.D. in cosmology and contribute to our understanding 
+  of the universe respectively. I believe that through rigorous research, collaboration, and
+  continuous learning, we can uncover the mysteries of the cosmos and push the boundaries of human knowledge.
+</p>
+
               </div>
               <div className="mt-6 bg-gray-800 rounded-2xl shadow-lg p-6">
                 <h3 className="text-xl font-bold text-gray-100 mb-4">Quick Facts</h3>
                 <ul className="space-y-2 text-sm text-gray-300">
-                  <li><strong>Age:</strong> 22 Years</li>
                   <li><strong>Location:</strong> Delhi, India</li>
-                  <li><strong>Education:</strong> B.Sc. Physics (Expected 2025)</li>
-                  <li><strong>Research Areas:</strong> Cosmology, Quantum Computing, Orbital Dynamics</li>
-                  <li><strong>Career Goal:</strong> Ph.D. in Cosmology</li>
+                  <li><strong>Education:</strong> B.Sc (Hons.) in Physics (Expected 2026)</li>
+                  <li><strong>Research Areas:</strong> Cosmology, Astronomy, Nonlinear Physics, Neurophysics</li>
                 </ul>
               </div>
             </div>
             <div className="order-1 md:order-2">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/Gemini_Generated_Image_kvf1pakvf1pakvf1.png"
+                  src="/madhuu.jpg"
                   alt="Madhurendra Mishra"
                   className="w-full h-auto object-cover"
                   onError={(e) => {
@@ -403,7 +404,6 @@ export default function ResearchPortfolio() {
             </a>
           </div>
           <p className="text-gray-400">&copy; 2025 Madhurendra Mishra. All rights reserved.</p>
-          <p className="text-gray-500 text-sm mt-2">Aspiring Cosmologist | Physics Researcher | Future Ph.D. Candidate</p>
         </div>
       </footer>
 
